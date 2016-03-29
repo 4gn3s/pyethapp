@@ -38,7 +38,7 @@ class TestJSONRPCClient(unittest.TestCase):
         while True:
             try:
                 self.client = JSONRPCClient()
-                self.client.call('web3_clientVersion')
+                self.client.call('web3_clientVersion', [], [])
                 break
             except ConnectionError:
                 time.sleep(0.5)
