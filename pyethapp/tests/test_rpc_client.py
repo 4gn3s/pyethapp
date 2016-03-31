@@ -19,3 +19,17 @@ def test_default_tx_gas_assigned():
     default_gas = 12345
     client = JSONRPCClient(default_tx_gas=default_gas)
     assert client.default_tx_gas == default_gas
+
+
+def test_default_host():
+    default_host = 'http://127.0.0.1'
+    client = JSONRPCClient()
+    assert client.transport.endpoint == '{}:{}'.format(default_host, client.port)
+
+
+def test_set_host():
+    host = 'http://1.1.1.1'
+    default_host = 'http://127.0.0.1'
+    client = JSONRPCClient(host)
+    assert client.transport.endpoint == '{}:{}'.format(host, client.port)
+    assert client.transport.endpoint != '{}:{}'.format(default_host, client.port)
